@@ -3,7 +3,7 @@
 
 typedef int cusolverStatus_t;
 
-struct cubsolverContext {
+struct cusolverContext {
 
 };
 typedef struct cusolverContext* cusolverDnHandle_t;
