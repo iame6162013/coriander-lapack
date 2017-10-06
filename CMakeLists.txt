@@ -40,7 +40,7 @@ else()
 endif()
 add_definitions(-DUSE_CLEW)
 
-add_library(coriandersolver SHARED src/cocl_solver.cpp)
+add_library(coriandersolver SHARED src/cocl_solver_dn.cpp)
 target_include_directories(coriandersolver PRIVATE "${CORIANDER_DIR}/include")
 target_include_directories(coriandersolver PRIVATE "include")
 target_include_directories(coriandersolver SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/clew/proxy-headers")
