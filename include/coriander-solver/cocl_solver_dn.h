@@ -10,7 +10,7 @@ typedef struct cusolverContext* cusolverDnHandle_t;
 
 
 extern "C" {
-cusolverStatus_t cusolverCreate(cusolverDnHandle_t *p_handle);
+cusolverStatus_t cusolverDnCreate(cusolverDnHandle_t *p_handle);
 cusolverStatus_t cusolverDnDestroy(cusolverDnHandle_t *p_handle);
 }
 
