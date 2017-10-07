@@ -12,15 +12,15 @@ void checkError(size_t status){
 }
 
 int main(){
-  cout << "Start test_constructor." << endl;
+  std::cout << "Start test_constructor." << std::endl;
   cusolverDnHandle_t cusolverDnHandle;
 
   // Create CUBLAS and CUDNN handles
   int gpuid = 0;
   checkError(cudaSetDevice(gpuid));
-  checkError(cusolverCreate(&cusolverDnHandle));
+  checkError(cusolverDnCreate(&cusolverDnHandle));
   checkError(cusolverDnDestroy(&cusolverDnHandle));
 
-  cout << "finished test_constructor." << endl;
+  std::cout << "finished test_constructor." << std::endl;
   return 0;
 }
