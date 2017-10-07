@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-cusolverStatus_t cusolverCreate(cusolverDnHandle_t *p_handle){
-  std::cout << "cusolverCreate" << std::endl;
+cusolverStatus_t cusolverDnCreate(cusolverDnHandle_t *p_handle){
+  std::cout << "cusolverDnCreate" << std::endl;
 
   return CUSOLVER_STATUS_SUCCESS;
 }
