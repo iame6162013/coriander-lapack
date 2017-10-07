@@ -60,7 +60,7 @@ CONFIGURE_FILE(
   "${CMAKE_CURRENT_BINARY_DIR}/cmake/coriandersolver.cmake" @ONLY)
 INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmake/coriandersolver.cmake DESTINATION share/cocl/coriander_plugins)
 
-INSTALL(FILES include/cusolver.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/coriandersolver)
+INSTALL(FILES include/cusolverDn.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/coriandersolver)
 FILE(GLOB SOLVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-solver/*.h)
 INSTALL(FILES ${SOLVER_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/coriandersolver/coriander-solver)
 
