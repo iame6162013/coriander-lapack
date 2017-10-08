@@ -12,6 +12,12 @@ typedef struct cusolverContext* cusolverDnHandle_t;
 extern "C" {
 cusolverStatus_t cusolverDnCreate(cusolverDnHandle_t *p_handle);
 cusolverStatus_t cusolverDnDestroy(cusolverDnHandle_t *p_handle);
+
+
+
+//TODO: implement
+cusolverStatus_t cusolverDnSetStream(cusolverDnHandle_t handle, cudaStream_t streamId);
+cusolverStatus_t cusolverDnGetStream(cusolverDnHandle_t handle, cudaStream_t *streamId)
 }
 
 
