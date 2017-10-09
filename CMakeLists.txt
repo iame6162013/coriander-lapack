@@ -26,6 +26,7 @@ endif()
 include(${COCL_CMAKE}/cocl_vars.cmake)
 include(${COCL_CMAKE}/cocl_impl.cmake)
 include(${COCL_LIB}/cocl/cocl-targets.cmake)
+include(${COCL_LIB}/coriander_plugins/corianderclblast-targets.cmake)
 
 
 SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins")
@@ -44,6 +45,7 @@ add_library(coriandersolver SHARED src/cocl_solver_dn.cpp)
 target_include_directories(coriandersolver PRIVATE "${CORIANDER_DIR}/include")
 target_include_directories(coriandersolver PRIVATE "include")
 target_include_directories(coriandersolver SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/clew/proxy-headers")
+target_include_directories(coriandersolver SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/coriander_plugins/corianderclblast")
 
 target_include_directories(coriandersolver PRIVATE ${CLANG_HOME}/include)
 target_link_libraries(coriandersolver cocl)
