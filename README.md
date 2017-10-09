@@ -8,4 +8,6 @@ To install this plugin, you first need to clone this repo, then you need to run 
 
 # Unit tests
 
-You need to install the plugin prior to running the tests.
+You need to install the plugin and enable tests in cmake prior to running the tests.
+
+To enable it via cmake, cd build use ccmake .. and enable BUILD_TESTS
