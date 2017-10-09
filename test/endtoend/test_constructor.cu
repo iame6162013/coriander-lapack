@@ -15,7 +15,7 @@ int main(){
   std::cout << "Start test_constructor." << std::endl;
   cusolverDnHandle_t cusolverDnHandle;
 
-  // Create CUBLAS and CUDNN handles
+  // Create cuSolver handle
   int gpuid = 0;
   checkError(cudaSetDevice(gpuid));
   checkError(cusolverDnCreate(&cusolverDnHandle));
