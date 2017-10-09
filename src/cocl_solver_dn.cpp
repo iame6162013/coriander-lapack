@@ -14,3 +14,11 @@ cusolverStatus_t cusolverDnDestroy(cusolverDnHandle_t *p_handle){
 
   return CUSOLVER_STATUS_SUCCESS;
 }
+
+cusolverStatus_t cusolverDnSetStream(cusolverDnHandle_t handle, cudaStream_t streamId){
+
+}
+cusolverStatus_t cusolverDnGetStream(cusolverDnHandle_t handle, cudaStream_t *streamId){
+
+  
+}
