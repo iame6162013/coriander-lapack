@@ -16,20 +16,44 @@ extern "C" {
 cusolverStatus_t cusolverDnCreate(cusolverDnHandle_t *p_handle);
 cusolverStatus_t cusolverDnDestroy(cusolverDnHandle_t *p_handle);
 
-
-
-//TODO: implement 'helper' functions
 cusolverStatus_t cusolverDnSetStream(cusolverDnHandle_t handle, cudaStream_t streamId);
 cusolverStatus_t cusolverDnGetStream(cusolverDnHandle_t handle, cudaStream_t *streamId);
+
+
+
+
 
 //TODO: implement 'solver' functions
 
 //Calculate the minimum size of the work buffers.
-cusolverStatus_t cusolverDnSpotrf_bufferSize(cusolverDnHandle_t handle,cublasFillMode_t uplo, int n, float *A, int lda, int *Lwork );            //Single
-cusolverStatus_t cusolverDnDpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, double *A, int lda, int *Lwork );           //Double
+cusolverStatus_t cusolverDnSpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, float *A, int lda, int *workspace_size );
+cusolverStatus_t cusolverDnDpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, double *A, int lda, int *workspace_size );
+//Cholesky decomposition
+cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, float  *A, int lda, float  *Workspace, int workspace_size, int *devInfo );
+cusolverStatus_t cusolverDnDpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, double *A, int lda, double *Workspace, int workspace_size, int *devInfo );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: the following depend on objects not yet added to coriander
 // cusolverStatus_t cusolverDnCpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, cuComplex *A, int lda, int *Lwork );       //Complex
 // cusolverStatus_t cusolverDnZpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, cuDoubleComplex *A, int lda, int *Lwork);  //Double complex
 
+//cusolverStatus_t cusolverDnCpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, cuComplex *A, int lda, cuComplex *Workspace, int Lwork, int *devInfo );
+//cusolverStatus_t cusolverDnZpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, cuDoubleComplex *A, int lda, cuDoubleComplex *Workspace, int Lwork, int *devInfo );
 
 
 }
