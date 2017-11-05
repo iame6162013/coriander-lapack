@@ -1,4 +1,4 @@
-# coriander-lapck
+# coriander-lapack
 
 This project only has the intent to implement dense lapack features in a coriander plugin.
 
