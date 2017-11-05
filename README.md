@@ -1,6 +1,6 @@
-# coriander-solver
+# coriander-lapck
 
-This project only has the intent to implement cusolverDn in a coriander plugin.
+This project only has the intent to implement dense lapack features in a coriander plugin.
 
 # Installation
 
