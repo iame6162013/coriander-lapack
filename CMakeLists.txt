@@ -22,7 +22,7 @@ if(NOT COCL_CMAKE)
 endif()
 
 # bring in just the targets we need/depend on
-# (if we bring in all targets, the solver target has the same name as ourselves, and conflicts)
+# (if we bring in all targets, the lapack target has the same name as ourselves, and conflicts)
 include(${COCL_CMAKE}/cocl_vars.cmake)
 include(${COCL_CMAKE}/cocl_impl.cmake)
 include(${COCL_LIB}/cocl/cocl-targets.cmake)
@@ -41,34 +41,34 @@ else()
 endif()
 add_definitions(-DUSE_CLEW)
 
-add_library(coriandersolver SHARED src/cocl_solver_dn.cpp)
-target_include_directories(coriandersolver PRIVATE "${CORIANDER_DIR}/include")
-target_include_directories(coriandersolver PRIVATE "include")
-target_include_directories(coriandersolver SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/clew/proxy-headers")
-target_include_directories(coriandersolver SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/coriander_plugins/corianderclblast")
+add_library(corianderlapack SHARED src/cocl_lapack_dn.cpp)
+target_include_directories(corianderlapack PRIVATE "${CORIANDER_DIR}/include")
+target_include_directories(corianderlapack PRIVATE "include")
+target_include_directories(corianderlapack SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/clew/proxy-headers")
+target_include_directories(corianderlapack SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/coriander_plugins/corianderclblast")
 
-target_include_directories(coriandersolver PRIVATE ${CLANG_HOME}/include)
-target_link_libraries(coriandersolver cocl)
+target_include_directories(corianderlapack PRIVATE ${CLANG_HOME}/include)
+target_link_libraries(corianderlapack cocl)
 
 if(BUILD_TESTS)
     # for testing
-    set(coriandersolver_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+    set(corianderlapack_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include)
     set(GTEST_HOME ${CMAKE_CURRENT_SOURCE_DIR}/third_party/gtest)
     add_subdirectory(test)
 endif()
 
 CONFIGURE_FILE(
-  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/coriandersolver.cmake.in"
-  "${CMAKE_CURRENT_BINARY_DIR}/cmake/coriandersolver.cmake" @ONLY)
-INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmake/coriandersolver.cmake DESTINATION share/cocl/coriander_plugins)
+  "${CMAKE_CURRENT_SOURCE_DIR}/cmake/corianderlapack.cmake.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/cmake/corianderlapack.cmake" @ONLY)
+INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmake/corianderlapack.cmake DESTINATION share/cocl/coriander_plugins)
 
-INSTALL(FILES include/cusolverDn.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/coriandersolver)
-FILE(GLOB SOLVER_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-solver/*.h)
-INSTALL(FILES ${SOLVER_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/coriandersolver/coriander-solver)
+INSTALL(FILES include/culapackDn.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderlapack)
+FILE(GLOB lapack_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-lapack/*.h)
+INSTALL(FILES ${lapack_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderlapack/coriander-lapack)
 
-install(TARGETS coriandersolver EXPORT coriandersolver-targets
+install(TARGETS corianderlapack EXPORT corianderlapack-targets
     LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins
     ARCHIVE DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins
     RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins
 )
-install(EXPORT coriandersolver-targets DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins)
+install(EXPORT corianderlapack-targets DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/coriander_plugins)

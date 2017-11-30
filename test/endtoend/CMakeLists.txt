@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.0)
 
 
 
-set(TESTS test_constructor
+set(TESTS test_constructor test_cholesky_factorization
 )
 
 # include_directories(include/cocl/proxy_includes)
@@ -10,7 +10,7 @@ set(E2E_TEST_BUILD_TARGETS)
 set(E2E_TEST_RUN_TARGETS)
 foreach(TEST ${TESTS})
     cocl_add_executable(${TEST} ${TESTS_EXCLUDE} ${TEST}.cu)
-    target_link_libraries(${TEST} cocl clew coriandersolver)
+    target_link_libraries(${TEST} cocl clew coriandersolver corianderclblast clblast easycl)
     # target_include_directories(${TEST} PRIVATE ${COCL_INCLUDES})
     target_include_directories(${TEST} PRIVATE ${CORIANDER_HOME}/include)
     # target_include_directories(${TEST} PRIVATE ${CORIANDER_HOME}/include/coriander_plugins/)
