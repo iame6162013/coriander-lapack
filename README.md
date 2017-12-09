@@ -12,6 +12,6 @@ You need to install the plugin and enable tests in cmake prior to running the te
 
 To enable it via cmake, cd build use ccmake .. and enable BUILD_TESTS
 
-# Credits
+# Credit
 
 Currently uses some code(build system and test system) copied from Coriander-clblast and Coriander-dnn.
