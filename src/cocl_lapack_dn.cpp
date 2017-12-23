@@ -4,6 +4,7 @@
 #include <iostream>
 #include "EasyCL/util/easycl_stringhelper.h"
 #include "cocl/hostside_opencl_funcs.h"
+#include "cocl/cocl_context.h"
 
 #include "clLapack_source_code.h"
 
@@ -42,10 +43,12 @@ cusolverStatus_t cusolverDnGetStream(cusolverDnHandle_t handle, cudaStream_t *st
 //   lda                 Dimension of a?
 //   *workspace_size     Size of the workspace needed for cusolverDnSpotrf
 cusolverStatus_t cusolverDnSpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, float *A, int lda, int *workspace_size){
-  return 0;
+  (*workspace_size) = 0;
+  return CUSOLVER_STATUS_SUCCESS;
 }
 cusolverStatus_t cusolverDnDpotrf_bufferSize(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, double *A, int lda, int *workspace_size){
-  return 0;
+  (*workspace_size) = 0;
+  return CUSOLVER_STATUS_SUCCESS;
 }
 
 // We'll implement it using a Cholesky-Crout implementation
@@ -60,11 +63,17 @@ cusolverStatus_t cusolverDnDpotrf_bufferSize(cusolverDnHandle_t handle, cublasFi
 //   workspace_size      Size of the workspace needed for cusolverDnSpotrf
 //   *devInfo            ???
 cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, float  *A, int lda, float  *Workspace, int workspace_size, int *devInfo){
-  easycl::CLKernel *kernel = cocl::compileOpenCLKernel("float_potrf", getFloatPotrfSourceCode());
+	std::cout << "cusolverDnSpotrf" << std::endl;
+	cocl::ThreadVars *v = cocl::getThreadVars();
 
+	easycl::CLKernel *kernel = cocl::compileOpenCLKernel("float_potrf", getFloatPotrfSourceCode());
 
-  const size_t size = 5;
-  kernel->run(1, size, size);
+	char buf[16];
+
+	kernel->inout(16, buf);
+	kernel->run_1d( 16, 16);
+
+	std::cout << "cusolverDnSpotrf: "  << buf << std::endl;
 }
 cusolverStatus_t cusolverDnDpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, double *A, int lda, double *Workspace, int workspace_size, int *devInfo){
   //easycl::CLKernel *kernel = cocl::compileOpenCLKernel("double_potrf", getDoublePotrfSourceCode());

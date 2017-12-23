@@ -1,10 +1,14 @@
 
 #include "coriander-solver/clLapack_source_code.h"
+#include <fstream>
 
 
-//TODO: put in actual source code -.-
+
+
+
 std::string getFloatPotrfSourceCode(){
-	return 	"void kernel simple_add(global const int* A, global const int* B, global int* C){"
-            	"	C[get_global_id(0)]=A[get_global_id(0)]+B[get_global_id(0)];"
-            	"}";
+	std::ifstream floatPotrfSourceCode("~/coriander/kernels/floatPotrfSourceCode.cl");
+	std::string src(std::istreambuf_iterator<char>(floatPotrfSourceCode), std::istreambuf_iterator<char>);
+
+	return src;
 }
