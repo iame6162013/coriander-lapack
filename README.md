@@ -11,3 +11,7 @@ To install this plugin, you first need to clone this repo, then you need to run 
 You need to install the plugin and enable tests in cmake prior to running the tests.
 
 To enable it via cmake, cd build use ccmake .. and enable BUILD_TESTS
+
+# Credit
+
+Currently uses some code(build system and test system) copied from Coriander-clblast and Coriander-dnn.
