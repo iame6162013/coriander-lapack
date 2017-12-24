@@ -1,5 +1,5 @@
 
-#include "coriander-solver/clLapack_source_code.h"
+#include "coriander-lapack/clLapack_source_code.h"
 #include <fstream>
 
 

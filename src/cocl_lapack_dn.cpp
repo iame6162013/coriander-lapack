@@ -1,12 +1,18 @@
 
 #include "coriander-lapack/cocl_lapack_dn.h"
 
+
 #include <iostream>
+
+#include <EasyCL.h>
 #include "EasyCL/util/easycl_stringhelper.h"
+
 #include "cocl/hostside_opencl_funcs.h"
 #include "cocl/cocl_context.h"
 
-#include "clLapack_source_code.h"
+#include "coriander-lapack/clLapack_source_code.h"
+
+
 
 cusolverStatus_t cusolverDnCreate(cusolverDnHandle_t *p_handle){
   std::cout << "cusolverDnCreate" << std::endl;
