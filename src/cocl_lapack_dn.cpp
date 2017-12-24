@@ -70,9 +70,9 @@ cusolverStatus_t cusolverDnDpotrf_bufferSize(cusolverDnHandle_t handle, cublasFi
 //   *devInfo            ???
 cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, float  *A, int lda, float  *Workspace, int workspace_size, int *devInfo){
 	std::cout << "cusolverDnSpotrf" << std::endl;
-	cocl::ThreadVars *v = cocl::getThreadVars();
+	cocl::ThreadVars* v = cocl::getThreadVars();
 
-	easycl::CLKernel *kernel = cocl::compileOpenCLKernel("float_potrf", getFloatPotrfSourceCode());
+	easycl::CLKernel* kernel = cocl::compileOpenCLKernel("float_potrf", getFloatPotrfSourceCode());
 
 	char buf[16];
 

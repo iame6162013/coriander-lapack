@@ -41,14 +41,14 @@ else()
 endif()
 add_definitions(-DUSE_CLEW)
 
-add_library(corianderlapack SHARED src/cocl_lapack_dn.cpp)
+add_library(corianderlapack SHARED src/*)
 target_include_directories(corianderlapack PRIVATE "${CORIANDER_DIR}/include")
 target_include_directories(corianderlapack PRIVATE "include")
 target_include_directories(corianderlapack SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/clew/proxy-headers")
 target_include_directories(corianderlapack SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/coriander_plugins/corianderclblast")
 
 target_include_directories(corianderlapack PRIVATE ${CLANG_HOME}/include)
-target_link_libraries(corianderlapack cocl)
+target_link_libraries(corianderlapack cocl easycl)
 
 if(BUILD_TESTS)
     # for testing
