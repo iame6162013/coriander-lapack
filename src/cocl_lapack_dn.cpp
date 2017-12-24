@@ -73,11 +73,16 @@ cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t up
 	std::cout << "cusolverDnSpotrf" << std::endl;
 	cocl::ThreadVars* v = cocl::getThreadVars();
 
-	easycl::CLKernel* kernel = cocl::compileOpenCLKernel("float_potrf", getFloatPotrfSourceCode());
+	std::cout << "1" << std::endl;
+
+	std::string src = getFloatPotrfSourceCode();
+	std::cout << "2" << std::endl;
+	easycl::CLKernel* kernel = cocl::compileOpenCLKernel("float_potrf", src);
 
 	float buf[16];
-
+	std::cout << "3" << std::endl;
 	kernel->inout(16, buf);
+	std::cout << "4" << std::endl;
 	kernel->run_1d( 16, 16);
 
 	std::cout << "cusolverDnSpotrf: "  << buf << std::endl;
