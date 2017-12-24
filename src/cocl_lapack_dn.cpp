@@ -75,7 +75,7 @@ cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t up
 
 	easycl::CLKernel* kernel = cocl::compileOpenCLKernel("float_potrf", getFloatPotrfSourceCode());
 
-	char buf[16];
+	float buf[16];
 
 	kernel->inout(16, buf);
 	kernel->run_1d( 16, 16);
