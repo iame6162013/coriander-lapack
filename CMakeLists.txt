@@ -62,7 +62,7 @@ CONFIGURE_FILE(
   "${CMAKE_CURRENT_BINARY_DIR}/cmake/corianderlapack.cmake" @ONLY)
 INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/cmake/corianderlapack.cmake DESTINATION share/cocl/coriander_plugins)
 
-INSTALL(FILES include/culapackDn.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderlapack)
+INSTALL(FILES include/cusolverDn.h DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderlapack)
 FILE(GLOB lapack_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/include/coriander-lapack/*.h)
 INSTALL(FILES ${lapack_HEADERS} DESTINATION ${CORIANDER_DIR}/include/coriander_plugins/corianderlapack/coriander-lapack)
 
