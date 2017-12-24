@@ -41,7 +41,7 @@ else()
 endif()
 add_definitions(-DUSE_CLEW)
 
-file(GLOB_RECURSE SOURCES RELATIVE "src/*.cpp")
+file(GLOB_RECURSE SOURCES RELATIVE ${CMAKE_SOURCE_DIR} "src/*.cpp")
 add_library(corianderlapack SHARED ${SOURCES})
 target_include_directories(corianderlapack PRIVATE "${CORIANDER_DIR}/include")
 target_include_directories(corianderlapack PRIVATE "include")
