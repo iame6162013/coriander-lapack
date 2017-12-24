@@ -4,7 +4,8 @@
 
 #include <iostream>
 
-#include <EasyCL/EasyCL.h>
+#include "EasyCL/EasyCL.h"
+#include "EasyCL/CLKernel.h"
 #include "EasyCL/util/easycl_stringhelper.h"
 
 #include "cocl/hostside_opencl_funcs.h"

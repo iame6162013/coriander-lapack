@@ -49,7 +49,7 @@ target_include_directories(corianderlapack SYSTEM BEFORE PRIVATE "${CORIANDER_DI
 target_include_directories(corianderlapack SYSTEM BEFORE PRIVATE "${CORIANDER_DIR}/include/coriander_plugins/corianderclblast")
 
 target_include_directories(corianderlapack PRIVATE ${CLANG_HOME}/include)
-target_link_libraries(corianderlapack cocl easycl)
+target_link_libraries(corianderlapack cocl easycl clew)
 
 if(BUILD_TESTS)
     # for testing
