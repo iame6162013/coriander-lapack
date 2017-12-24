@@ -7,5 +7,5 @@ endif(BUILD_TESTS)
 
 add_subdirectory(endtoend)
 
-add_custom_target(tests DEPENDS cocl patch_hostside ${BUILD_TEST_TARGETS})
+add_custom_target(tests DEPENDS clblast clew easycl cocl patch_hostside ${BUILD_TEST_TARGETS})
 add_custom_target(run-tests DEPENDS tests ${RUN_TEST_TARGETS})
