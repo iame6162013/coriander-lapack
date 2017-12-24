@@ -8,7 +8,14 @@
 
 std::string getFloatPotrfSourceCode(){
 	std::ifstream floatPotrfSourceCode("~/coriander/kernels/floatPotrfSourceCode.cl");
-	std::string src(std::istreambuf_iterator<char>(floatPotrfSourceCode), std::istreambuf_iterator<char>);
+	if(floatPotrfSourceCode){
+		std::string src;
+		floatPotrfSourceCode.seekg(0, td::ios::end);
+		src.resize(floatPotrfSourceCode.tellg());
+		floatPotrfSourceCode.seekg(0, std::ios::beg);
 
-	return src;
+		floatPotrfSourceCode.read(&src[0], src.size());
+		return src;
+	}
+	throw("floatPotrfSourceCode not found!");
 }
