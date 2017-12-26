@@ -80,6 +80,7 @@ cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t up
 	easycl::CLKernel* kernel = cocl::compileOpenCLKernel("float_potrf", src);
 
 	float buf[16];
+	buf[3] = 4;
 	std::cout << "3" << std::endl;
 	kernel->inout(16, buf);
 	std::cout << "4" << std::endl;
@@ -89,6 +90,7 @@ cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t up
 		std::cout << "buf[" << i << "]: " << buf[i] << std::endl;
 	}
 
+	(*devInfo)=0;
 	std::cout << "cusolverDnSpotrf: "  << buf << std::endl;
 }
 cusolverStatus_t cusolverDnDpotrf(cusolverDnHandle_t handle, cublasFillMode_t uplo, int n, double *A, int lda, double *Workspace, int workspace_size, int *devInfo){
