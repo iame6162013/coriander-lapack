@@ -54,11 +54,11 @@ int main(){
   cusolverDnSpotrf_bufferSize(cusolverDnHandle, upperOrLower, numRows_1, (float *) device_Matrix_1, leading_dimension_1, &workspace_size);
   CUdeviceptr workspace; //this is on the gpu
   cuMemAlloc(&workspace, workspace_size * sizeof(float));
-  int ret;
-  cusolverDnSpotrf(cusolverDnHandle, upperOrLower, numRows_1, (float *) device_Matrix_1, leading_dimension_1, (float*) workspace, workspace_size, &ret);
+  int devInfo;
+  cusolverDnSpotrf(cusolverDnHandle, upperOrLower, numRows_1, (float *) device_Matrix_1, leading_dimension_1, (float*) workspace, workspace_size, &devInfo);
 
   //We don't want an error do we?
-  assert(ret==0);
+  assert(devInfo==0);
 
   //TODO; Check result.
   cuMemcpyDtoHAsync(host_Matrix_1, device_Matrix_1, numRows_1^2 * sizeof(float), stream);
