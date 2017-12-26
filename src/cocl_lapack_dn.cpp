@@ -86,7 +86,7 @@ cusolverStatus_t cusolverDnSpotrf(cusolverDnHandle_t handle, cublasFillMode_t up
 	kernel->run_1d( 16, 16);
 
 	for(int i=0; i<16; i++){
-		std::cout << buf[i] << std::endl;
+		std::cout << "buf[" << i << "]: " << buf[i] << std::endl;
 	}
 
 	std::cout << "cusolverDnSpotrf: "  << buf << std::endl;
