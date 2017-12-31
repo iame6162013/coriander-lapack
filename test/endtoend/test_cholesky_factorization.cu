@@ -53,11 +53,7 @@ int main(){
   int workspace_size;
   cusolverDnSpotrf_bufferSize(cusolverDnHandle, upperOrLower, numRows_1, (float *) device_Matrix_1, leading_dimension_1, &workspace_size);
   CUdeviceptr workspace=0; //this is on the gpu
-
-  //TODO: this is a hack, and this hack is absent from 'normal' cuda code. This needs to be fixed some way.
-  if(workspace_size!=0){
-  	cuMemAlloc(&workspace, workspace_size * sizeof(float));
-  }
+  cuMemAlloc(&workspace, workspace_size * sizeof(float));
 
   int devInfo;
   cusolverDnSpotrf(cusolverDnHandle, upperOrLower, numRows_1, (float *) device_Matrix_1, leading_dimension_1, (float*) workspace, workspace_size, &devInfo);
