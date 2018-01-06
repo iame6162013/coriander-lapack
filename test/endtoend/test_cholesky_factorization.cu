@@ -20,9 +20,10 @@ bool floatRoughlyEquals(float a, float b){
   if(a==b){
     return true;
   }
-  if(abs(a-b)<1){
+  if(std::abs(a-b)<1){
     return true;
   }
+  return false;
 }
 
 bool arrayMatch(float* A, float* B, int N){
@@ -55,13 +56,6 @@ int main(){
 
 
 
-
-
-  cublasHandle_t blas;
-  cublasCreate(&blas);
-  cublasSetStream(blas, stream);
-
-
   cublasFillMode_t upperOrLower = CUBLAS_FILL_MODE_LOWER;
 
 
@@ -81,19 +75,17 @@ int main(){
 
   //Move matrici to device
   CUdeviceptr device_Matrix_1;
-  cuMemAlloc(&device_Matrix_1, N^2 * sizeof(float));
-  cuMemcpyHtoDAsync(device_Matrix_1, host_Matrix_1, N^2 * sizeof(float), stream);
+  cuMemAlloc(&device_Matrix_1, N*N * sizeof(float));
+  cuMemcpyHtoDAsync(device_Matrix_1, host_Matrix_1, N*N * sizeof(float), stream);
 
 
 
   CUdeviceptr device_Matrix_2;
-  cuMemAlloc(&device_Matrix_2, N^2 * sizeof(float));
-  float alpha = 1f;
-  float beta = 1f;
+  cuMemAlloc(&device_Matrix_2, N*N * sizeof(float));
+  float alpha = 1.0;
+  float beta = 0.0;
   int leading_dimension_2 = leading_dimension_1;
-  cublasSgemm(blas, CUBLAS_OP_N, CUBLAS_OP_N, N, N, N, &alpha, (float*) device_Matrix_1, leading_dimension_1, (float*) device_Matrix_1, &beta, device_Matrix_2, leading_dimension_1);
-
-
+  cublasSgemm(blas, CUBLAS_OP_N, CUBLAS_OP_N, N, N, N, &alpha, (float*) device_Matrix_1, leading_dimension_1, (float*) device_Matrix_1, leading_dimension_1, &beta, (float*) device_Matrix_2, leading_dimension_2);
 
 
   int workspace_size;
@@ -110,10 +102,10 @@ int main(){
 
 
 
-  float host_Matrix_2[N^2];
-  cuMemcpyDtoHAsync(host_Matrix_2, device_Matrix_2, N^2 * sizeof(float), stream);
+  float host_Matrix_2[N*N];
+  cuMemcpyDtoHAsync(host_Matrix_2, device_Matrix_2, N*N * sizeof(float), stream);
 
-  arrayMatch(host_Matrix_1, host_Matrix_2, N^2);
+  std::cout << "arrayMatch: " << arrayMatch(host_Matrix_1, host_Matrix_1, N*N) << std::endl;
 
   for(int i=0; i<N; i++){
       for(int j=0; j<N; j++){
