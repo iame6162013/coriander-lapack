@@ -2,7 +2,6 @@
 
 #include <cuda_runtime.h>
 #include <device_launch_parameters.h>
-#include <clblast.h>
 
 #include "cublas_v2.h"
 #include "cusolverDn.h"
@@ -116,11 +115,11 @@ int main(){
 
   arrayMatch(host_Matrix_1, host_Matrix_2, N^2);
 
-  /*for(int i=0; i<N; i++){
+  for(int i=0; i<N; i++){
       for(int j=0; j<N; j++){
         std::cout << "Element(" << i << ", " << j << ") = " << host_Matrix_2[i*N+j] << std::endl;
       }
-  }*/
+  }
 
   checkError(cublasDestroy(blas));
   checkError(cusolverDnDestroy(&cusolverDnHandle));
